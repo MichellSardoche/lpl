@@ -1,0 +1,29 @@
+% I
+%1-
+% name (bonjour).  existe deja dans prolog
+% mutant(X) reussit ssi X est un mutant
+mutant(X) :- animal(A1),animal(A2),A1\==A2, 
+	     name(A1,L1),name(A2,L2),
+	     concat(D,C,L1),concat(C,F,L2),C\==[],
+	     concat(D,L2,L),name(X,L). 
+		
+% test 
+?- mutant(X).
+X = caribouquetin 
+
+%2-
+% 
+
+% gmutant(X,N) resussit ssi X est un mutant de N ieme génération
+enum(I,I,_).
+enum(I,A,B) :- A < B, AA is A + 1,enum(I,AA,B).	        
+
+gmutant(X,0) :- animal(X).
+gmutant(X,N) :- N > 0,  NN is N-1,enum(N1,à,NN),N2 is N - N1 - 1, 
+                gmutant(A1,N1), gmutant (A2,N2), A1\==A2,
+                name(A1,L1),name(A2,L2),
+	        concat(D,C,L1),concat(C,F,L2),C\==[],
+	        concat(D,C,L),name(X,L).
+	       
+	        
+

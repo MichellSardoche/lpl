@@ -1,0 +1,85 @@
+[] : -> liste
+[_|_] : element liste -> liste
+
+
+En prolog 
+[1|[2|[3|[]]]]
+[1,2,3]
+
+
+
+En haskell
+1:2:3[]
+[1,2,3]
+
+
+-----------------------------------------------------
+% Dans le fichier tp2.pl
+% longueur(L,N) L pour la liste et N pour la taille
+
+% 1-
+%   2 cas donc 2 clauses :
+longueur([],0).
+longueur([_|R],N):-longueur (R,M), N is M+1.              %:- pour Si
+
+
+% 2- 
+estdans(E,[E|_]).
+estdans(E,[F|R]):- F\==E, estdans(E,R).
+
+% 3-
+%   concat(L1,L2,L3). % L3 le resultat 
+
+concat([], L2, L2). 
+concat([E|R],L2,[E|L]) :- concat(R,L2,L).
+
+rev([],[]).
+rev([E|R],L) :- rev(R,Rr), concat(Rr,[E],L).
+
+
+-------------------------------------------------------------
+% 1- test 
+$swipl
+?- consult(tp2).
+?- longueur([1,2,3],X).
+X=3
+
+% 2- test
+$swipl
+?- consult(tp2).
+?- estdans(2,[1,2,3]).  % Donne True
+?- estdans(X,[1,2,3]).  % Donne X = 1
+?- estdans(4,[1,2,3]).  % Donne False
+
+% 3- test
+$swipl
+?- consult(tp2).
+?- concat([1,2],[3,4], L).     % Donne L = [1, 2, 3, 4].
+?- concat([1,2],L, [1,2,3,4]). % Donne L = [3, 4].
+?- concat(L,[3,4], [1,2,3,4]). % Donne L = [1, 2].
+?- concat(L1,L2, [1,2,3]).     % Donne L1 = [],L2 = [1, 2, 3] .
+
+$swipl
+?- consult(tp2).
+?- rev([1,2,3],X).
+?- rev(X,[1,2,3]).
+
+% 4- test
+$swipl
+?- consult(tp2).
+?- aplatir([[1,2],[3,4]],[1,2,3,4]).
+?- aplatir([3,3,3],[1,2,4]).
+
+
+% 1- test
+$swipl
+?- consult(tp2).
+?- name (eric,X).
+?- put(101).
+?- epelle(eric).
+
+
+
+------------------------------------------------------------
+
+

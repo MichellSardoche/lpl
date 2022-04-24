@@ -1,0 +1,50 @@
+Lire la documentation "prolog en quelques lignes"
+Commande lancer l'interpreteur prolog:
+
+Varible en majuscule
+Nom de fichier en minuscule
+:- implique  <=
+
+"ou" : plusieur close
+"et" : mettre des virgules ex: h(x) :- f(X),g(x).
+
+= : unification des termes à droite et à guache(on connait pas les deux valeurs)
+== : identité syntaxique (on connait les deux valeurs)
+=\= : différence arithmétique
+\== :différence systaxique
+//---------------------------- terminal
+$swipl
+% 1-
+
+?- consult(etudiants).
+
+?- consult(tp1).
+
+?- etud(X). //fille et garcons
+
+/------------------------
+% 2-
+
+?- consult(etudiants).
+
+?- habite('Eric Hochaud',X,Y).
+
+/------------------------
+% 3-
+
+?- consult(etudiants).
+
+?- habite(X,Y,Z),Y=\=0.  // =\= (différent de 0)
+
+/------------------------
+% 4-
+
+?- consult(etudiants).
+
+?- consult(tp1).
+
+?- voisins(X,Y).
+
+
+
+//--------------------------------- fichier
